@@ -1,0 +1,16 @@
+services:
+  node:
+    container_name: astro-bookwarm
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./app:/app
+    stdin_open: true
+    environment:
+      - NODE_ENV=development
+    command: >
+      /bin/bash -c "yarn install &&
+      yarn dev --host --port 3000"
